@@ -1,0 +1,51 @@
+type Product{
+     ProductId : ID!
+     Name : String
+     Description : String
+     Price : Float
+     Category : String
+     Stock : Int
+     CreatedAt : String
+     UpdatedAt : String
+}
+
+type Taxonomy {
+     TaxonomyId : ID!
+     Name : String
+     Description : String
+     ParentId : String
+     Type : String
+}
+
+input TaxonomyInput {
+     Name : String!
+     Description : String!
+     ParentId : String!
+     Type : String!
+}
+input ProductInput{
+     Name : String!
+     Description : String!
+     Price : Float!
+     Category : String!
+     Stock : Int!
+}
+
+type Query{
+     getProduct(Product:Product): Product
+     listProducts: [Product]
+
+     getTaxonomy(input:Taxonomy): Taxonomy
+     listTaxonomies: [Taxonomy]
+     getTaxonomiesByParent(ParentId:ID!):
+}
+
+type Mutation{
+     createProduct(input: ProductInput!): Product
+     updateProduct(input: Product!): Product
+     deleteProduct(input: Product!): Boolean
+
+     createTaxonomy(input: TaxonomyInput!): Taxonomy
+     updateTaxonomy(input: Taxonomy!): Taxonomy
+     deleteTaxonomy(input: Taxonomy!): Boolean
+}

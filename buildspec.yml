@@ -1,0 +1,26 @@
+version: 2.0
+
+phases:
+  install:
+    runtime-versions:
+      nodejs:20
+    commands:
+      - npm install --force
+  
+  build:
+    commands:
+      - npm run build
+
+  prep_deploy:
+    commands:
+      - npm run test
+      - zip -r lamda.zip ./lambda/dist
+
+artifacts:
+  files:
+    - lamda.zip
+  base-directory: .
+
+cache:
+  paths:
+    - node_modules/*
